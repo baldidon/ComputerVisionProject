@@ -1,0 +1,23 @@
+labels_10 = {0: 'Airplane', 1:'Automobile', 2:'Bird', 3:'Cat', 4:'Deer',
+                     5:'Dog', 6:'Frog', 7:'Horse', 8:'Ship', 9:'Truck'}
+
+labels_100 = {0:'apples', 1:'baby', 2:'bear', 3:'beaver', 4:'bed',
+                 5:'bee', 6:'beetle', 7:'bicycle', 8:'bottles', 9:'bowls',
+                 10: 'boy', 11:'bridge', 12:'bus', 13:'butterfly', 15:'camel',
+                 14:'cans', 16:'castle', 17:'caterpillar', 18:'cattle', 19:'chair',
+                 20:'chimpanzee', 22:'clock', 21:'cloud', 23:'cockroach', 24:'computer keyboard',
+                 25:'couch', 26:'crab', 27:'crocodile', 28:'cups, mugs, glasses', 29:'dinosaur',
+                 30:'dolphin', 31:'elephant', 32:'flatfish', 33:'forest', 34:'fox',
+                 35:'girl', 36:'hamster', 37:'house', 38:'kangaroo', 39:'lamp',
+                 40:'lawn-mower', 41:'leopard', 42:'lion', 43:'lizard', 44:'lobster',
+                 45:'man', 46:'maple', 47:'motorcycle', 48:'mountain', 49:'mouse',
+                 50:'mushrooms', 51:'oak', 52:'oranges', 53:'orchids', 54:'ordinary fish',
+                 55:'otter', 56:'palm', 57:'pears', 58:'pickup truck', 59:'pine',
+                 60: 'plain', 61:'plates', 62:'poppies', 63:'porcupine', 64:'possum',
+                 65:'rabbit', 66:'raccoon', 67:'ray', 68:'road', 69:'rocket',
+                 70:'rose', 71:'sea', 72:'seal', 73:'shark', 74:'shrew',
+                 75:'skunk', 76:'skyscraper', 77:'snail', 78:'snake', 79:'spider',
+                 80:'squirrel', 81:'streetcar', 82:'sunflowers', 83:'sweet peppers', 84:'table',
+                 85:'tank', 86:'telephone', 87:'television', 88:'tiger', 89:'tractor',
+                         90:'train', 91:'trout', 92:'tulips', 93:'turtle', 94:'wardrobe',
+                         95:'whale', 96:'willow', 97:'wolf', 98:'woman', 99:'worm'}
