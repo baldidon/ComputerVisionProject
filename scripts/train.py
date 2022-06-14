@@ -1,6 +1,6 @@
 import os
 import argparse
-from ComputerVisionProject.scripts.solver import Solver
+from progetto_cv.scripts.solver import Solver
 
 
 def main():

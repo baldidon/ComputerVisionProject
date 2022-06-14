@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 import multiprocessing as mp
 import torch
 import torchvision.transforms as transforms
-from ComputerVisionProject.scripts.net import Net
+from progetto_cv.scripts.net import Net
 import matplotlib.pyplot as plt
 
 
@@ -58,7 +58,7 @@ class Solver():
             self.net.train()  # i wanna use dropout layer, so i this need to activate layer# !
 
             for step, inputs in enumerate(self.train_loader):
-                #load batch in device (gpu)
+                # load batch in device (gpu)
                 images = inputs[0].to(self.device)
                 true_classes = inputs[1].to(self.device)
 
@@ -120,9 +120,10 @@ class Solver():
     def data_agumentation(self,selector):
         transforms_list = list()
         if selector == 1:
-            transforms_list.append(transforms.ColorJitter(
-
-            ))
+            # transforms_list.append(transforms.ColorJitter(
+            #
+            # ))
+            pass
         transforms_list.append(transforms.ToTensor())
         return transforms.Compose(*transforms_list)
 
