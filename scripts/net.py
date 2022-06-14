@@ -9,11 +9,12 @@ class Net(nn.Module):
 
         #remember. CIFAR images: 32*32*3
         self.conv1 = nn.Sequential(
-            nn.Conv2d(in_channels=1,
+            nn.Conv2d(in_channels=3,
                       out_channels=32,
                       kernel_size=(3,3),
                       padding=(1,1),# padding same
                       stride=(1,1)),
+            nn.BatchNorm2d(32),
             nn.ReLU()
         )
 
@@ -23,6 +24,7 @@ class Net(nn.Module):
                       kernel_size=(3, 3),
                       padding=(1, 1),  # padding same
                       stride=(1, 1)),
+            nn.BatchNorm2d(128),
             nn.ReLU()
         )
 
@@ -38,8 +40,8 @@ class Net(nn.Module):
         )
 
         self.bottleneck1 = nn.Sequential(
-            nn.Conv1d(in_channels=128,
-                      out_channels=64, kernel_size=(1)),
+            nn.Conv2d(in_channels=128,
+                      out_channels=64, kernel_size=(1,1), padding=(0,0),stride=(1,1)),
             nn.BatchNorm2d(64),
             nn.ReLU()
         )
@@ -66,14 +68,16 @@ class Net(nn.Module):
         )
 
         self.bottleneck2 = nn.Sequential(
-            nn.Conv1d(in_channels=512,
+            nn.Conv2d(in_channels=512,
                       out_channels=128,
-                      kernel_size=(1)),
+                      kernel_size=(1,1),
+                      padding=(0,0),
+                      stride=(1,1)),
             nn.BatchNorm2d(128),
             nn.ReLU()
         )
 
-        self.fc = nn.Linear(8*8*64, 100)
+        self.fc = nn.Linear(8*8*128, 100)
 
         if(selector == 10):
             self.fc2 = nn.Sequential(

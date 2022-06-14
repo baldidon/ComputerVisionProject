@@ -19,13 +19,13 @@ class Solver():
 
         self.train_loader = DataLoader(dataset=self.training_data,
                                        batch_size=args.batch_size,
-                                       num_workers=mp.cpu_count()-1,
+                                       num_workers=mp.cpu_count()-2,
                                        shuffle=True,
                                        drop_last=True)
 
         self.test_loader = DataLoader(dataset=self.test_data,
                                        batch_size=args.batch_size,
-                                       num_workers=mp.cpu_count() - 1,
+                                       num_workers=mp.cpu_count()-2,
                                        shuffle=True,
                                        drop_last=True)
 
@@ -45,11 +45,10 @@ class Solver():
         if args.plot == 1:
             plt.ion()
             figure, ax = plt.subplots(figsize=(10, 8))
-            x = np.linspace(0,args.max_epochs,1)
             train_y = train_acc_values
             test_y = test_acc_values
-            train_plot, = ax.plot(x,train_y)
-            test_plot, = ax.plot(x, test_y)
+            train_plot, = ax.plot(train_y)
+            test_plot, = ax.plot(test_y)
             plt.title("Train and Test accuracy", fontsize=20)
             plt.xlabel("epoch")
             plt.ylabel("accuracy")
@@ -72,19 +71,19 @@ class Solver():
                 loss.backward()
                 self.optim.step()
 
-                # accuracy
-                train_acc_values[epoch] = self.evaluate(self.training_data)
-                test_acc_values[epoch] = self.evaluate(self.test_data)
+            # accuracy
+            train_acc_values[epoch] = self.evaluate(self.training_data)
+            test_acc_values[epoch] = self.evaluate(self.test_data)
 
-                if args.plot == 1:
-                    train_plot.set_ydata(train_acc_values)
-                    test_plot.set_ydata(train_acc_values)
-                    figure.canvas.draw()
-                    figure.canvas.flush_events()
+            if args.plot == 1:
+                train_plot.set_ydata(train_acc_values)
+                test_plot.set_ydata(train_acc_values)
+                figure.canvas.draw()
+                figure.canvas.flush_events()
 
-                print("Epoch [{}/{}] Loss: {:.3f} Train Acc: {:.3f}, Test Acc: {:.3f}".
-                      format(epoch + 1, args.max_epochs, loss.item(),
-                             train_acc_values[epoch], test_acc_values[epoch]))
+            print("Epoch [{}/{}] Loss: {:.3f} Train Acc: {:.3f}, Test Acc: {:.3f}".
+                  format(epoch + 1, args.max_epochs, loss.item(),
+                         train_acc_values[epoch], test_acc_values[epoch]))
 
 
 
@@ -107,11 +106,11 @@ class Solver():
                 root=args.data_root,
                 train=True,
                 download=True,
-                transform=self.data_agumentation(args.data_agumentation))
+                transform=transforms.ToTensor())
             test_data = datasets.CIFAR10(
                 root=args.data_root,
                 train=False,
-                transform=self.data_agumentation(0)
+                transform=transforms.ToTensor()
             )
 
         return training_data, test_data
@@ -128,7 +127,7 @@ class Solver():
         return transforms.Compose(*transforms_list)
 
     def optimizer_selector(self, selector:str):
-        if selector == 'adam' :
+        if selector == 'Adam' :
             optimizer = torch.optim.Adam(params=self.net.parameters(), lr=self.args.lr,
                                          eps=1e-8, betas=(0.9, 0.999), weight_decay=self.args.wd)
         else:
@@ -141,7 +140,7 @@ class Solver():
         args = self.args
         loader = DataLoader(data,
                             batch_size=args.batch_size,
-                            num_workers=1,
+                            num_workers=2,
                             shuffle=False)
 
         self.net.eval()
